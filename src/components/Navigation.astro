@@ -1,0 +1,75 @@
+---
+import { theme } from "../stores/theme";
+
+const links = [
+    { href: "/", label: "Home" },
+    { href: "/blog", label: "Blog" },
+    { href: "/projects", label: "Projects" },
+    { href: "/work", label: "Work" },
+];
+---
+
+<nav
+    class="sticky top-0 z-50 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b border-border"
+>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a
+                href="/"
+                class="font-semibold text-lg text-foreground hover:text-primary transition-colors"
+            >
+                Marcelo Pecin
+            </a>
+
+            <div class="flex items-center gap-8">
+                {
+                    links.map((link) => {
+                        const isActive = Astro.url.pathname === link.href;
+                        return (
+                            <a
+                                href={link.href}
+                                class={`text-sm transition-colors ${
+                                    isActive
+                                        ? "text-primary font-medium"
+                                        : "text-muted-foreground hover:text-foreground"
+                                }`}
+                            >
+                                {link.label}
+                            </a>
+                        );
+                    })
+                }
+
+                <button
+                    id="theme-switcher"
+                    class="p-2 rounded-lg bg-secondary w-10 h-10 text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                    aria-label="Toggle dark mode"
+                >
+                    {theme.get() === "light" ? "🌙" : "☀️"}
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    import { theme } from "../stores/theme";
+
+    const themeSwitcher = document.getElementById("theme-switcher");
+
+    themeSwitcher?.addEventListener("click", function () {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+
+        const current = theme.get();
+        const next = current === "light" ? "dark" : "light";
+        theme.set(next);
+    });
+
+    theme.subscribe((value) => {
+        if (themeSwitcher) {
+            themeSwitcher.textContent = value === "light" ? "🌙" : "☀️";
+            document.documentElement.classList.toggle("dark", value === "dark");
+        }
+    });
+</script>

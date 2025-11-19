@@ -1,11 +1,82 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import BlogPreview from "../components/BlogPreview.astro";
+import { Image } from "astro:assets";
+import me from "../assets/me.jpeg";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = Object.values(
+    import.meta.glob("./posts/*.md", { eager: true }),
+).slice(0, 3);
 ---
 
 <Layout>
-	<Welcome />
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section class="mb-20">
+            <h1
+                class="text-4xl sm:text-5xl font-bold text-foreground mb-4 text-balance"
+            >
+                Hey, I'm a software engineer
+            </h1>
+            <p class="text-lg text-muted-foreground mb-8 text-balance">
+                I'm passionate about clean code, scalable architecture, and best
+                practices in development.
+            </p>
+            <div class="flex gap-3 flex-wrap">
+                <a
+                    href="/projects"
+                    class="px-6 py-3 bg-linear-to-r from-amber-600 to-amber-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-amber-600/30 transition-all duration-200 active:scale-95 border border-amber-400/20"
+                >
+                    View Projects
+                </a>
+                <a
+                    href="/blog"
+                    class="px-6 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 dark:border-amber-400 rounded-lg font-medium hover:bg-amber-600/10 transition-all duration-200 active:scale-95"
+                >
+                    Read Blog
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-20 pb-20 border-b border-border">
+            <h2 class="text-2xl font-bold text-foreground mb-6">About Me</h2>
+            <div class="flex gap-8 items-start">
+                <div class="shrink-0">
+                    <Image
+                        src={me}
+                        alt="Me hugging a big toy bear"
+                        class="rounded-lg object-cover w-32 h-32 sm:w-40 sm:h-40 border-4 border-primary/20"
+                        priority
+                    />
+                </div>
+                <div class="space-y-4 text-muted-foreground flex-1">
+                    <p>
+                        I'm a software developer with a focus on backend,
+                        specializing in creating scalable and efficient systems.
+                        I have experience with microservice architecture,
+                        RESTful APIs, and performance optimization.
+                    </p>
+                    <p>
+                        In this blog, I share interesting discoveries, code
+                        tests, and reflections on software development. New post
+                        every week!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-foreground">Latest Posts</h2>
+                <a
+                    href="/blog"
+                    class="text-primary hover:underline text-sm font-medium"
+                >
+                    View All
+                </a>
+            </div>
+            <div class="space-y-6">
+                {posts.map((post) => <BlogPreview post={post} />)}
+            </div>
+        </section>
+    </div>
 </Layout>

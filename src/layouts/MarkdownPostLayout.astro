@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <a
+            href="/blog"
+            class="text-amber-600 dark:text-amber-400 hover:underline text-sm mb-8 inline-block"
+        >
+            ← Back to Blog
+        </a>
+
+        <article>
+            <h1 class="text-4xl font-bold text-foreground mb-4 text-balance">
+                {frontmatter.title}
+            </h1>
+            <p class="text-muted-foreground mb-8">
+                {
+                    new Date(frontmatter.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })
+                }
+            </p>
+
+            <div
+                class="prose dark:prose-invert prose-p:text-muted-foreground prose-a:text-amber-600 dark:prose-a:text-amber-400 prose-a:no-underline prose-a:hover:underline prose-pre:font-mono prose-pre:text-[16px] prose-code:font-mono prose-li:marker:text-amber-600 dark:prose-li:marker:text-amber-400 prose-li:text-muted-foreground"
+            >
+                <slot />
+            </div>
+        </article>
+    </div>
+</Layout>

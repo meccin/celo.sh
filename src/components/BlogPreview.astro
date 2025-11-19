@@ -1,0 +1,26 @@
+---
+const { post } = Astro.props;
+---
+
+<article class="pb-6 border-b border-border last:border-b-0">
+    <a href={post.url} class="group">
+        <h3
+            class="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2"
+        >
+            {post.frontmatter.title}
+        </h3>
+    </a>
+    <p class="text-sm text-muted-foreground mb-3">
+        {
+            new Date(post.frontmatter.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            })
+        }
+    </p>
+    <p class="text-muted-foreground mb-4">{post.frontmatter.excerpt}</p>
+    <a href={post.url} class="text-primary hover:underline text-sm font-medium">
+        Read more →
+    </a>
+</article>
