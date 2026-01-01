@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description:
       "Generator of valid Brazilian CPF, CNPJ, RG and Credit Card numbers - JSON Pretty - Base64 Encode and Decode. 💻",
     tags: ["Next.js", "ChakraUI", "Typescript", "Dev Tools"],
-    github: "https://github.com/avuenja/gerador",
+    github: "https://github.com/meccin/gerador",
     website: "https://gerador.dev.br",
   },
   {
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     description:
       "TabNews app made with lots of ♥️ and Flutter by the community, for the TabNews (tabnews.com.br) website.",
     tags: ["Flutter", "Dart", "Mobile", "Community"],
-    github: "https://github.com/avuenja/tabnews-app",
+    github: "https://github.com/meccin/tabnews-app",
   },
   {
     id: "3",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     description:
       "🌸 A modern, soothing Neovim theme inspired by traditional Japanese aesthetics, focusing on visual comfort and accessibility.",
     tags: ["NeoVim", "Lua", "Terminal Colors", "Accessibility"],
-    github: "https://github.com/avuenja/shizukana.nvim",
+    github: "https://github.com/meccin/shizukana.nvim",
   },
   {
     id: "4",
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     description:
       "A device app to track your training journey inspired by the anime/manhwa Solo Leveling! A 12-week fitness program. 💪🏻",
     tags: ["Rust", "TUI", "CLI", "Healthy"],
-    github: "https://github.com/avuenja/workout-tracker",
+    github: "https://github.com/meccin/workout-tracker",
   },
 ];
 
@@ -91,6 +91,6 @@ export const workExperience: WorkExperience[] = [
 ];
 
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/avuenja" },
+  { name: "GitHub", url: "https://github.com/meccin" },
   { name: "LinkedIn", url: "https://linkedin.com/in/celopeccin" },
 ];

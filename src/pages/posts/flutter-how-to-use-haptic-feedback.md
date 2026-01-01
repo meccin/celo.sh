@@ -123,6 +123,6 @@ I hope you enjoyed my first article. I will always strive to improve in future p
 
 I also leave here the **Flutter Raw** repository, which is a project where I try to build what is generally needed in a Flutter application without relying on external packages, so it can be easily reused from one project to another.
 
-[avuenja/flutter-raw](https://github.com/avuenja/flutter-raw)
+[meccin/flutter-raw](https://github.com/meccin/flutter-raw)
 
 Thank you, my dear ones, and see you next time.
