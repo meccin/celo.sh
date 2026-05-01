@@ -20,13 +20,21 @@ export const projects: Project[] = [
     id: "1",
     name: "Gerador",
     description:
-      "Generator of valid Brazilian CPF, CNPJ, RG and Credit Card numbers - JSON Pretty - Base64 Encode and Decode. 💻",
-    tags: ["Next.js", "ChakraUI", "Typescript", "Dev Tools"],
+      "Generator of valid Brazilian CPF, CNPJ, RG and Credit Card numbers - JSON Pretty - Base64 Encode and Decode - Hash. 💻",
+    tags: ["Astro", "Tailwindcss", "Typescript", "Dev Tools"],
     github: "https://github.com/meccin/gerador",
     website: "https://gerador.dev.br",
   },
   {
     id: "2",
+    name: "Sleipnir",
+    description:
+      "Sleipnir is a minimal harness for disciplined AI-assisted development for Claude Code. 🐦‍⬛ Two ravens, one contract. 🐦‍⬛",
+    tags: ["Harness Engineering", "SDD", "AI-assisted development"],
+    github: "https://github.com/meccin/sleipnir",
+  },
+  {
+    id: "3",
     name: "TabNews App",
     description:
       "TabNews app made with lots of ♥️ and Flutter by the community, for the TabNews (tabnews.com.br) website.",
@@ -34,7 +42,7 @@ export const projects: Project[] = [
     github: "https://github.com/meccin/tabnews-app",
   },
   {
-    id: "3",
+    id: "4",
     name: "Shizukana.nvim",
     description:
       "🌸 A modern, soothing Neovim theme inspired by traditional Japanese aesthetics, focusing on visual comfort and accessibility.",
@@ -42,7 +50,7 @@ export const projects: Project[] = [
     github: "https://github.com/meccin/shizukana.nvim",
   },
   {
-    id: "4",
+    id: "5",
     name: "Workout Tracker",
     description:
       "A device app to track your training journey inspired by the anime/manhwa Solo Leveling! A 12-week fitness program. 💪🏻",
