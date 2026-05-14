@@ -35,6 +35,14 @@ export const projects: Project[] = [
   },
   {
     id: "3",
+    name: "Yggdrasil",
+    description:
+      "🌳 TUI multi-agent dashboard for Claude Code — dispatch N parallel agents on GitLab/GitHub issues in isolated git worktrees.",
+    tags: ["Multi Agent", "Isolated Worktrees", "Claude Code"],
+    github: "https://github.com/meccin/yggdrasil",
+  },
+  {
+    id: "4",
     name: "TabNews App",
     description:
       "TabNews app made with lots of ♥️ and Flutter by the community, for the TabNews (tabnews.com.br) website.",
@@ -42,7 +50,7 @@ export const projects: Project[] = [
     github: "https://github.com/meccin/tabnews-app",
   },
   {
-    id: "4",
+    id: "5",
     name: "Shizukana.nvim",
     description:
       "🌸 A modern, soothing Neovim theme inspired by traditional Japanese aesthetics, focusing on visual comfort and accessibility.",
@@ -50,7 +58,7 @@ export const projects: Project[] = [
     github: "https://github.com/meccin/shizukana.nvim",
   },
   {
-    id: "5",
+    id: "6",
     name: "Workout Tracker",
     description:
       "A device app to track your training journey inspired by the anime/manhwa Solo Leveling! A 12-week fitness program. 💪🏻",
