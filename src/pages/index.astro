@@ -1,83 +1,217 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BlogPreview from "../components/BlogPreview.astro";
 import { Image } from "astro:assets";
 import me from "../assets/me.jpeg";
+import { jobs, projects, skills } from "../assets/data";
 
-const posts = Object.values(
-    import.meta.glob("./posts/*.md", { eager: true }),
-).slice(0, 3);
+// live star counts at build time; any failure keeps the snapshot from data.ts
+const token = import.meta.env.GITHUB_TOKEN;
+const stars = import.meta.env.PROD
+    ? await Promise.all(
+          projects.map((p) =>
+              fetch(`https://api.github.com/repos/${p.repo}`, {
+                  headers: token ? { Authorization: `Bearer ${token}` } : {},
+              })
+                  .then((r) => (r.ok ? r.json() : null))
+                  .then((d) => d?.stargazers_count ?? p.stars)
+                  .catch(() => p.stars),
+          ),
+      )
+    : projects.map((p) => p.stars);
+
+const nav = [
+    ["about", "About"],
+    ["now", "Now"],
+    ["work", "Work"],
+    ["projects", "Projects"],
+    ["skills", "Skills"],
+    ["offscreen", "Off-screen"],
+];
 ---
 
 <Layout>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <section class="mb-20">
-            <h1
-                class="text-4xl sm:text-5xl font-bold text-foreground mb-4 text-balance"
-            >
-                Hey, I'm Marcelo.
-            </h1>
-            <p class="text-lg text-muted-foreground mb-8 text-balance">
-                I write scalable backends by day and questionable Lua configs by
-                night. Lately, building small harnesses to keep AI coding agents
-                on a leash.
-            </p>
-            <div class="flex gap-3 flex-wrap">
-                <a
-                    href="/projects"
-                    class="px-6 py-3 bg-linear-to-r from-amber-600 to-amber-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-amber-600/30 transition-all duration-200 active:scale-95 border border-amber-400/20"
-                >
-                    View Projects
-                </a>
-                <a
-                    href="/blog"
-                    class="px-6 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 dark:border-amber-400 rounded-lg font-medium hover:bg-amber-600/10 transition-all duration-200 active:scale-95"
-                >
-                    Read Blog
-                </a>
+    <div class="page">
+        <aside class="sidebar">
+            <div class="ident">
+                <div class="kana"><span lang="ja">マルセロ</span></div>
+                <h1 class="name">Marcelo<br />Pecin</h1>
+                <p class="role">
+                    Senior Software Engineer<br />Based in TO, Italy · from Brazil
+                </p>
             </div>
-        </section>
 
-        <section class="mb-20 pb-20 border-b border-border">
-            <h2 class="text-2xl font-bold text-foreground mb-6">About Me</h2>
-            <div class="flex gap-8 items-start">
-                <div class="shrink-0">
-                    <Image
-                        src={me}
-                        alt="Me hugging a big toy bear"
-                        class="rounded-lg object-cover w-32 h-32 sm:w-40 sm:h-40 border-4 border-primary/20"
-                        priority
-                    />
-                </div>
-                <div class="space-y-4 text-muted-foreground flex-1">
-                    <p>
-                        I'm a software developer with a focus on backend,
-                        specializing in creating scalable and efficient systems.
-                        I have experience with microservice architecture,
-                        RESTful APIs, and performance optimization.
-                    </p>
-                    <p>
-                        In this blog, I share interesting discoveries, code
-                        tests, and reflections on software development. New post
-                        every week!
-                    </p>
-                </div>
-            </div>
-        </section>
+            <nav class="nav">
+                {nav.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+            </nav>
 
-        <section>
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-foreground">Latest Posts</h2>
-                <a
-                    href="/blog"
-                    class="text-primary hover:underline text-sm font-medium"
-                >
-                    View All
-                </a>
+            <div class="social">
+                <a class="ul" href="https://github.com/meccin" target="_blank" rel="noopener">GitHub</a>
+                <a class="ul" href="https://linkedin.com/in/celopeccin" target="_blank" rel="noopener">LinkedIn</a>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span class="dot"></span>
+                    <span class="sr-only">Theme:</span>
+                    <span class="moon"><span lang="ja">月</span> · Moon</span>
+                    <span class="dawn"><span lang="ja">暁</span> · Dawn</span>
+                </button>
             </div>
-            <div class="space-y-6">
-                {posts.map((post) => <BlogPreview post={post} />)}
+
+            <div class="haiku">
+                <div class="haiku-jp" lang="ja">
+                    <span>静かな夜</span><span>コードは流れる</span><span>月の下</span>
+                </div>
+                <div class="haiku-en">quiet night / code flows / under the moon</div>
             </div>
-        </section>
+        </aside>
+
+        <main class="main">
+            <section id="about">
+                <h2 class="hero">
+                    I write scalable backends by day and questionable Lua configs by night.
+                </h2>
+                <div class="about-grid">
+                    <div class="prose">
+                        <p>
+                            Brazilian software engineer based in Italy. Working remotely for
+                            <a class="ul" href="#work">Wise Group</a>, a Brazilian company, since
+                            2019, where I build serverless platforms on Node.js, TypeScript and AWS,
+                            and ship LLM-powered products.
+                        </p>
+                        <p>
+                            Backend is home: microservices, REST APIs, performance work. But I've
+                            been around the whole stack, from PHP monoliths and Laravel APIs to React
+                            Native, Vue and Flutter apps.
+                        </p>
+                        <p>
+                            Mobile and web developer, nerd, anime lover and Neovim rookie forever.
+                        </p>
+                    </div>
+                    <figure class="photo">
+                        <Image src={me} widths={[200, 400]} sizes="200px" format="webp" alt="Marcelo hugging a big toy bear" />
+                        <figcaption>me and toy bear</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section id="now">
+                <div class="sec-head"><span class="num" aria-hidden="true">二</span><h2>Now</h2></div>
+                <div class="now-card">
+                    <p>
+                        Building small harnesses to keep AI coding agents on a leash:
+                        <a class="ul-accent" href="https://github.com/meccin/sleipnir" target="_blank" rel="noopener">Sleipnir</a>
+                        for disciplined, contract-first development with Claude Code, and
+                        <a class="ul-accent" href="https://github.com/meccin/yggdrasil" target="_blank" rel="noopener">Yggdrasil</a>
+                        to dispatch parallel agents on issues from a TUI.
+                    </p>
+                    <p class="updated">updated 2026</p>
+                </div>
+            </section>
+
+            <section id="work">
+                <div class="sec-head"><span class="num" aria-hidden="true">三</span><h2>Work</h2></div>
+                <div>
+                    {
+                        jobs.map((j) => (
+                            <article class="row job">
+                                <div class="job-meta">
+                                    <div>{j.period}</div>
+                                    <div>{j.location}</div>
+                                </div>
+                                <div class="job-body">
+                                    <div class="job-title">
+                                        <h3>{j.title}</h3>
+                                        <span>· {j.company}</span>
+                                    </div>
+                                    <ul class="bullets">
+                                        {j.bullets.map((b) => <li><span>{b}</span></li>)}
+                                    </ul>
+                                    <div class="tags">
+                                        {j.stack.map((t) => <span>{t}</span>)}
+                                    </div>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="sec-head"><span class="num" aria-hidden="true">四</span><h2>Projects</h2></div>
+                <div class="projects">
+                    {
+                        projects.map((p, i) => (
+                            <a class="project" href={`https://github.com/${p.repo}`} target="_blank" rel="noopener">
+                                <div class="project-head">
+                                    <h3>{p.name}</h3>
+                                    {stars[i] > 0 && (
+                                        <span><span aria-hidden="true">★ </span>{stars[i]}<span class="sr-only"> stars</span></span>
+                                    )}
+                                </div>
+                                <p>{p.desc}</p>
+                                <div class="project-foot">
+                                    <span>{p.lang}</span>
+                                    <span aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section id="skills">
+                <div class="sec-head"><span class="num" aria-hidden="true">五</span><h2>Skills</h2></div>
+                <div>
+                    {
+                        skills.map(([group, items]) => (
+                            <div class="row skill">
+                                <div>{group}</div>
+                                <div>{items}</div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section id="offscreen">
+                <div class="sec-head"><span class="num" aria-hidden="true">六</span><h2>Off-screen</h2></div>
+                <p class="offscreen">
+                    Anime, manga and the occasional manhwa, which is how a 12-week workout plan from
+                    Solo Leveling turned into a
+                    <a class="ul" href="https://github.com/meccin/workout-tracker" target="_blank" rel="noopener">Rust TUI</a>.
+                    Endless Neovim tweaking, including my own
+                    <a class="ul" href="https://github.com/meccin/shizukana.nvim" target="_blank" rel="noopener">colorscheme</a>
+                    inspired by Japanese aesthetics.
+                </p>
+            </section>
+
+            <footer class="footer">
+                <span>© 2026 Marcelo Pecin</span>
+                <span lang="ja">静かな</span>
+            </footer>
+        </main>
     </div>
+
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Marcelo Pecin",
+            jobTitle: "Senior Software Engineer",
+            url: "https://celo.sh",
+            worksFor: { "@type": "Organization", name: "Wise Group" },
+            address: { "@type": "PostalAddress", addressCountry: "IT" },
+            sameAs: ["https://github.com/meccin", "https://linkedin.com/in/celopeccin"],
+        })}
+    />
 </Layout>
+
+<script>
+    document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const next = root.dataset.theme === "dawn" ? "moon" : "dawn";
+        root.dataset.theme = next;
+        try {
+            localStorage.setItem("theme", next);
+        } catch {}
+    });
+</script>
