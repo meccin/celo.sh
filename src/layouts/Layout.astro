@@ -1,34 +1,50 @@
 ---
 import "../styles/global.css";
+import { getImage } from "astro:assets";
+import me from "../assets/me.jpeg";
 
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
+const {
+    title = "Marcelo Pecin :: Software Engineer",
+    description = "Marcelo Pecin, Senior Software Engineer based in Italy, from Brazil. Serverless backends on Node.js, TypeScript and AWS, LLM-powered products, and Neovim tinkering.",
+    type = "website",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL((await getImage({ src: me, width: 400, format: "jpg" })).src, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="moon">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="description" content="Marcelo Pecin's personal website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="alternate" type="application/rss+xml" title="Marcelo Pecin | Blog" href="/rss.xml" />
         <meta name="generator" content={Astro.generator} />
-        <title>Marcelo Pecin :: Software Engineer</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
-            rel="stylesheet"
-        />
+        <meta property="og:type" content={type} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta name="twitter:card" content="summary" />
+
+        <!-- hero h2 (the LCP) is Shippori Mincho 400 -->
+        <link rel="preload" href="/fonts/shippori-mincho-400.woff2" as="font" type="font/woff2" crossorigin />
+
+
+        <!-- before paint, so Dawn never flashes Moon. Old nanostores values ('"light"') fall back to moon. -->
+        <script is:inline>
+            try {
+                if (localStorage.getItem("theme") === "dawn")
+                    document.documentElement.dataset.theme = "dawn";
+            } catch {}
+        </script>
     </head>
-    <body class="font-sans antialiased">
-        <div
-            class="h-1 bg-linear-to-r from-amber-500 via-amber-400 to-amber-500 dark:from-amber-600 dark:via-amber-500 dark:to-amber-600"
-        >
-        </div>
-        <Navigation />
-        <main class="min-h-screen"><slot /></main>
-        <Footer />
+    <body>
+        <slot />
     </body>
 </html>
