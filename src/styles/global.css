@@ -376,19 +376,15 @@ section {
     text-wrap: pretty;
 }
 
+/* framed like the stack tags: border only, caption inside */
 .photo {
-    position: relative;
+    box-sizing: border-box;
     width: 200px;
-}
-.photo::before {
-    content: "";
-    position: absolute;
-    inset: 12px -12px -12px 12px;
+    padding: 8px 8px 10px;
     border: 1px solid var(--line);
-    border-radius: 2px;
+    border-radius: 3px;
 }
 .photo img {
-    position: relative;
     display: block;
     width: 100%;
     height: auto;
@@ -401,7 +397,8 @@ section {
     font-family: var(--serif);
     font-size: 12px;
     color: var(--ink3);
-    margin-top: 18px;
+    margin-top: 10px;
+    text-align: center;
     letter-spacing: 0.08em;
     line-height: 1.6;
 }

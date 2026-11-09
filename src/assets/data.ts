@@ -4,11 +4,11 @@ export const jobs = [
     company: "Wise Group",
     period: "2021 — now",
     location: "Remote, from Italy",
-    stack: ["Node.js", "TypeScript", "AWS Lambda", "Kubernetes", "MariaDB", "Python", "React", "Vue"],
+    stack: ["Node.js", "TypeScript", "AWS", "Serverless", "Fastify", "Prisma", "MariaDB", "Python", "Kubernetes"],
     bullets: [
-      "Built robust serverless services with Node.js, TypeScript, MariaDB, AWS Lambdas (including Python) and Kubernetes, while maintaining legacy PHP systems.",
-      "Led the development of an enterprise chatbot leveraging LLMs to enhance service conversion and streamline operations.",
-      "Delivered web, mobile, and marketplace products using React.js, Vue, React Native, payment integrations, and PHP APIs.",
+      "Tech lead of an LLM chatbot. I own the API (Node.js, Fastify, Prisma, MariaDB) and the AWS infra: Lambda, SQS, SNS, EventBridge, WebSocket, two regions.",
+      "Serverless systems for clients, like a tax report on Lambda + DynamoDB that I still update every tax season.",
+      "NestJS monorepo with unit tests; web and mobile with Next.js, Nuxt and React Native when needed.",
     ],
   },
   {
@@ -18,9 +18,9 @@ export const jobs = [
     location: "Brazil",
     stack: ["Laravel", "Angular", "React Native", "MariaDB"],
     bullets: [
-      "Built and sustained REST APIs using Laravel and MariaDB, including microservice-based architectures.",
-      "Developed front-end solutions with Angular and delivered mobile apps using React Native.",
-      "Implemented automated testing to ensure reliability, performance, and maintainability across services.",
+      "A whistleblowing portal in Laravel on AWS, with online payments and a marketplace integration. I kept coming back to it in later phases.",
+      "A React Native app that helps small business owners map out their business model.",
+      "Portals and internal systems for institutions: document management, an institutional portal, and long-term support on Laravel + Angular systems.",
     ],
   },
   {
@@ -30,29 +30,15 @@ export const jobs = [
     location: "Brazil",
     stack: ["PHP", "GCP", "Docker", "Kubernetes"],
     bullets: [
-      "Rapid promotion from intern to mid-level, with strong technical growth and adaptability.",
-      "Solid experience in banking integration, tax automation, and high-impact mobile solutions.",
-      "Focus on scalability and performance using GCP and containerization (Docker/Kubernetes).",
+      "Joined as an intern, left as mid-level.",
+      "White-label ERP: Brazilian tax invoices (NF-e, NFC-e, CT-e, MDF-e) and bank slips with CNAB 240/400 reconciliation.",
+      "Sites, e-commerces, news portals, an accessible portal (WCAG 2.1 AA), hybrid apps. Hosting on GCP with Docker/K8s.",
     ],
   },
 ];
 
 // stars: snapshot, refreshed from the GitHub API at build time (see index.astro)
 export const projects = [
-  {
-    name: "Gerador",
-    repo: "meccin/gerador",
-    stars: 26,
-    lang: "TypeScript · Astro",
-    desc: "Valid Brazilian CPF, CNPJ, RG and credit card generator, plus JSON pretty, Base64 and hashing. Live at gerador.dev.br.",
-  },
-  {
-    name: "TabNews App",
-    repo: "meccin/tabnews-app",
-    stars: 75,
-    lang: "Dart · Flutter",
-    desc: "Community-built mobile app for tabnews.com.br, made with lots of ♥ and Flutter.",
-  },
   {
     name: "Sleipnir",
     repo: "meccin/sleipnir",
@@ -68,11 +54,25 @@ export const projects = [
     desc: "Multi-agent dashboard for Claude Code: dispatch N parallel agents on GitLab/GitHub issues in isolated git worktrees.",
   },
   {
+    name: "Gerador",
+    repo: "meccin/gerador",
+    stars: 26,
+    lang: "TypeScript · Astro",
+    desc: "Valid Brazilian CPF, CNPJ, RG and credit card generator, plus JSON pretty, Base64 and hashing. Live at gerador.dev.br.",
+  },
+  {
+    name: "TabNews App",
+    repo: "meccin/tabnews-app",
+    stars: 75,
+    lang: "Dart · Flutter",
+    desc: "Community-built Flutter app for tabnews.com.br, made with lots of love.",
+  },
+  {
     name: "Shizukana.nvim",
     repo: "meccin/shizukana.nvim",
     stars: 3,
     lang: "Lua",
-    desc: "A soothing Neovim colorscheme inspired by traditional Japanese aesthetics. Visual comfort and accessibility first.",
+    desc: "My Neovim colorscheme, inspired by Japanese aesthetics. Moon, Dawn and Dusk variants. This site uses it.",
   },
   {
     name: "Workout Tracker",
@@ -84,10 +84,11 @@ export const projects = [
 ];
 
 export const skills = [
-  ["code", "TypeScript, JavaScript, PHP, Python, Dart, Rust, Lua"],
-  ["backend", "Node.js, Laravel, REST APIs, microservices, serverless, LLM integrations"],
-  ["frontend & mobile", "React, Vue, Angular, React Native, Flutter"],
-  ["infra", "AWS (Lambda), GCP, Kubernetes, Docker, MariaDB"],
-  ["tooling", "Neovim, Claude Code harnesses, CI/CD, automated testing"],
-  ["spoken", "Portuguese (native), English, Italian"],
+  ["code", "TypeScript, JavaScript, PHP, SQL, Python, Dart, Lua, Rust"],
+  ["backend", "Node.js, NestJS, Fastify, Prisma, Laravel, REST APIs, WebSocket"],
+  ["ai", "LLMs, RAG, tool calling, Claude Code agents"],
+  ["cloud", "AWS (Lambda, SQS, SNS, EventBridge, API Gateway, RDS), Serverless Framework, Docker, Kubernetes, GitLab CI, GCP"],
+  ["data", "MariaDB, MySQL, PostgreSQL, DynamoDB, Redis"],
+  ["frontend & mobile", "React, Next.js, Vue, Nuxt, Angular, Flutter, React Native"],
+  ["spoken", "Portuguese (native), English (working), Italian (basic)"],
 ];
