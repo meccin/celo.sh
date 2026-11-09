@@ -10,13 +10,6 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.13",
-    "@nanostores/persistent": "^1.2.0",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.7",
-    "nanostores": "^1.1.0",
-    "tailwindcss": "^4.1.17"
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "astro": "^5.15.7"
   }
 }

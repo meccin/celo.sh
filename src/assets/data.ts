@@ -1,112 +1,94 @@
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  tags: string[];
-  github?: string;
-  website?: string;
-}
-
-interface WorkExperience {
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-  highlights?: string[];
-}
-
-export const projects: Project[] = [
-  {
-    id: "1",
-    name: "Gerador",
-    description:
-      "Generator of valid Brazilian CPF, CNPJ, RG and Credit Card numbers - JSON Pretty - Base64 Encode and Decode - Hash. 💻",
-    tags: ["Astro", "Tailwindcss", "Typescript", "Dev Tools"],
-    github: "https://github.com/meccin/gerador",
-    website: "https://gerador.dev.br",
-  },
-  {
-    id: "2",
-    name: "Sleipnir",
-    description:
-      "Sleipnir is a minimal harness for disciplined AI-assisted development for Claude Code. 🐦‍⬛ Two ravens, one contract. 🐦‍⬛",
-    tags: ["Harness Engineering", "SDD", "AI-assisted development"],
-    github: "https://github.com/meccin/sleipnir",
-  },
-  {
-    id: "3",
-    name: "Yggdrasil",
-    description:
-      "🌳 TUI multi-agent dashboard for Claude Code — dispatch N parallel agents on GitLab/GitHub issues in isolated git worktrees.",
-    tags: ["Multi Agent", "Isolated Worktrees", "Claude Code"],
-    github: "https://github.com/meccin/yggdrasil",
-  },
-  {
-    id: "4",
-    name: "TabNews App",
-    description:
-      "TabNews app made with lots of ♥️ and Flutter by the community, for the TabNews (tabnews.com.br) website.",
-    tags: ["Flutter", "Dart", "Mobile", "Community"],
-    github: "https://github.com/meccin/tabnews-app",
-  },
-  {
-    id: "5",
-    name: "Shizukana.nvim",
-    description:
-      "🌸 A modern, soothing Neovim theme inspired by traditional Japanese aesthetics, focusing on visual comfort and accessibility.",
-    tags: ["NeoVim", "Lua", "Terminal Colors", "Accessibility"],
-    github: "https://github.com/meccin/shizukana.nvim",
-  },
-  {
-    id: "6",
-    name: "Workout Tracker",
-    description:
-      "A device app to track your training journey inspired by the anime/manhwa Solo Leveling! A 12-week fitness program. 💪🏻",
-    tags: ["Rust", "TUI", "CLI", "Healthy"],
-    github: "https://github.com/meccin/workout-tracker",
-  },
-];
-
-export const workExperience: WorkExperience[] = [
+export const jobs = [
   {
     title: "Senior Software Engineer",
     company: "Wise Group",
-    period: "2021 - Present",
-    description:
-      "Developed serverless and scalable platforms using Node.js, TypeScript, and AWS, delivering LLM-powered products and modern web/mobile applications.",
-    highlights: [
-      "Built robust serverless services with Node.js, TypeScript, MariaDB, AWS Lambdas (including Python) and Kubernetes, while maintaining legacy PHP systems.",
-      "Led the development of an enterprise chatbot leveraging LLMs to enhance service conversion and streamline operations.",
-      "Delivered web, mobile, and marketplace products using React.js, Vue, React Native, payment integrations, and PHP APIs.",
+    period: "2021 — now",
+    location: "Remote, from Italy",
+    stack: ["Node.js", "TypeScript", "AWS", "Serverless", "Fastify", "Prisma", "MariaDB", "Python", "Kubernetes"],
+    bullets: [
+      "Tech lead of an LLM chatbot. I own the API (Node.js, Fastify, Prisma, MariaDB) and the AWS infra: Lambda, SQS, SNS, EventBridge, WebSocket, two regions.",
+      "Serverless systems for clients, like a tax report on Lambda + DynamoDB that I still update every tax season.",
+      "NestJS monorepo with unit tests; web and mobile with Next.js, Nuxt and React Native when needed.",
     ],
   },
   {
     title: "PHP and Mobile Developer",
     company: "Wise Group",
-    period: "2019 - 2021",
-    description:
-      "Developed and maintained scalable APIs and applications using Angular, Laravel, microservices, and React Native.",
-    highlights: [
-      "Built and sustained REST APIs using Laravel and MariaDB, including microservice-based architectures.",
-      "Developed front-end solutions with Angular and delivered mobile apps using React Native.",
-      "Implemented automated testing to ensure reliability, performance, and maintainability across services.",
+    period: "2019 — 2021",
+    location: "Brazil",
+    stack: ["Laravel", "Angular", "React Native", "MariaDB"],
+    bullets: [
+      "A whistleblowing portal in Laravel on AWS, with online payments and a marketplace integration. I kept coming back to it in later phases.",
+      "A React Native app that helps small business owners map out their business model.",
+      "Portals and internal systems for institutions: document management, an institutional portal, and long-term support on Laravel + Angular systems.",
     ],
   },
   {
     title: "Full Stack Developer",
     company: "MSWi",
-    period: "2013 - 2019",
-    description:
-      "Developed high-performance, scalable web and mobile solutions while progressing from intern to mid-level and supporting clients across multiple sectors.",
-    highlights: [
-      "Rapid promotion from intern to mid-level, with strong technical growth and adaptability.",
-      "Solid experience in banking integration, tax automation, and high-impact mobile solutions.",
-      "Focus on scalability and performance using GCP and containerization (Docker/Kubernetes).",
+    period: "2013 — 2019",
+    location: "Brazil",
+    stack: ["PHP", "GCP", "Docker", "Kubernetes"],
+    bullets: [
+      "Joined as an intern, left as mid-level.",
+      "White-label ERP: Brazilian tax invoices (NF-e, NFC-e, CT-e, MDF-e) and bank slips with CNAB 240/400 reconciliation.",
+      "Sites, e-commerces, news portals, an accessible portal (WCAG 2.1 AA), hybrid apps. Hosting on GCP with Docker/K8s.",
     ],
   },
 ];
 
-export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/meccin" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/celopeccin" },
+// stars: snapshot, refreshed from the GitHub API at build time (see index.astro)
+export const projects = [
+  {
+    name: "Sleipnir",
+    repo: "meccin/sleipnir",
+    stars: 2,
+    lang: "Shell",
+    desc: "A minimal harness for disciplined AI-assisted development with Claude Code. Two ravens, one contract.",
+  },
+  {
+    name: "Yggdrasil",
+    repo: "meccin/yggdrasil",
+    stars: 4,
+    lang: "TypeScript · TUI",
+    desc: "Multi-agent dashboard for Claude Code: dispatch N parallel agents on GitLab/GitHub issues in isolated git worktrees.",
+  },
+  {
+    name: "Gerador",
+    repo: "meccin/gerador",
+    stars: 26,
+    lang: "TypeScript · Astro",
+    desc: "Valid Brazilian CPF, CNPJ, RG and credit card generator, plus JSON pretty, Base64 and hashing. Live at gerador.dev.br.",
+  },
+  {
+    name: "TabNews App",
+    repo: "meccin/tabnews-app",
+    stars: 75,
+    lang: "Dart · Flutter",
+    desc: "Community-built Flutter app for tabnews.com.br, made with lots of love.",
+  },
+  {
+    name: "Shizukana.nvim",
+    repo: "meccin/shizukana.nvim",
+    stars: 3,
+    lang: "Lua",
+    desc: "My Neovim colorscheme, inspired by Japanese aesthetics. Moon, Dawn and Dusk variants. This site uses it.",
+  },
+  {
+    name: "Workout Tracker",
+    repo: "meccin/workout-tracker",
+    stars: 0,
+    lang: "Rust · CLI",
+    desc: "Terminal app to track a 12-week fitness program inspired by Solo Leveling.",
+  },
+];
+
+export const skills = [
+  ["code", "TypeScript, JavaScript, PHP, SQL, Python, Dart, Lua, Rust"],
+  ["backend", "Node.js, NestJS, Fastify, Prisma, Laravel, REST APIs, WebSocket"],
+  ["ai", "LLMs, RAG, tool calling, Claude Code agents"],
+  ["cloud", "AWS (Lambda, SQS, SNS, EventBridge, API Gateway, RDS), Serverless Framework, Docker, Kubernetes, GitLab CI, GCP"],
+  ["data", "MariaDB, MySQL, PostgreSQL, DynamoDB, Redis"],
+  ["frontend & mobile", "React, Next.js, Vue, Nuxt, Angular, Flutter, React Native"],
+  ["spoken", "Portuguese (native), English (working), Italian (basic)"],
 ];

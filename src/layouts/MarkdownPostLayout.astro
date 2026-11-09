@@ -1,37 +1,84 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "./Layout.astro";
 
 const { frontmatter } = Astro.props;
 ---
 
-<Layout>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <a
-            href="/blog"
-            class="text-amber-600 dark:text-amber-400 hover:underline text-sm mb-8 inline-block"
-        >
-            ← Back to Blog
-        </a>
-
-        <article>
-            <h1 class="text-4xl font-bold text-foreground mb-4 text-balance">
-                {frontmatter.title}
-            </h1>
-            <p class="text-muted-foreground mb-8">
-                {
-                    new Date(frontmatter.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
-                }
-            </p>
-
-            <div
-                class="prose dark:prose-invert prose-p:text-muted-foreground prose-a:text-amber-600 dark:prose-a:text-amber-400 prose-a:no-underline prose-a:hover:underline prose-pre:font-mono prose-pre:text-[16px] prose-code:font-mono prose-li:marker:text-amber-600 dark:prose-li:marker:text-amber-400 prose-li:text-muted-foreground"
-            >
-                <slot />
-            </div>
-        </article>
-    </div>
+<Layout title={`${frontmatter.title} :: Marcelo Pecin`} description={frontmatter.excerpt} type="article">
+    <article class="post">
+        <a class="post-back" href="/">← celo.sh</a>
+        <h1>{frontmatter.title}</h1>
+        <p class="post-date">
+            {
+                new Date(frontmatter.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </p>
+        <slot />
+    </article>
 </Layout>
+
+<style is:global>
+    .post {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 72px 32px 96px;
+        font-size: 16.5px;
+        line-height: 1.7;
+        color: var(--ink2);
+    }
+    .post h1,
+    .post h2,
+    .post h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        margin: 1.6em 0 0.5em;
+    }
+    .post h1 {
+        font-size: clamp(32px, 4.6vw, 44px);
+        line-height: 1.12;
+        margin-top: 24px;
+    }
+    .post p,
+    .post ul,
+    .post ol,
+    .post pre {
+        margin: 0 0 1.1em;
+    }
+    .post a {
+        border-bottom: 1px solid var(--line);
+    }
+    .post a:hover {
+        border-color: var(--accent);
+    }
+    .post-back,
+    .post-date {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink3);
+    }
+    .post .post-back {
+        border: 0;
+    }
+    .post code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+        color: var(--ink);
+    }
+    .post pre {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    .post pre code {
+        font-size: inherit;
+    }
+</style>
